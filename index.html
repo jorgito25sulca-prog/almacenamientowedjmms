@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae | Portafolio Profesional</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              900: '#134e4a',
+              accent: '#38bdf8'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Dynamic background glow effects */
+    .glow-bg {
+      background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15), transparent 70%);
+    }
+
+    /* Print styling rules */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: #ffffff !important;
+        color: #111827 !important;
+      }
+      .print-card {
+        border: 1px solid #e5e7eb !important;
+        box-shadow: none !important;
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        break-inside: avoid;
+      }
+      .text-gray-300, .text-gray-400, .text-slate-400 {
+        color: #374151 !important;
+      }
+      .text-white {
+        color: #111827 !important;
+      }
+      .border-slate-800, .border-slate-700 {
+        border-color: #e5e7eb !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
+
+  <!-- Header / Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80 no-print">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo / Brand Initials -->
+        <a href="#hero" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+            <span id="nav-initials">JM</span>
+          </div>
+          <span class="font-bold text-lg text-slate-100 group-hover:text-brand-400 transition-colors hidden sm:block" id="nav-name-title">Juan Miguel</span>
+        </a>
+
+        <!-- Desktop Menu Links -->
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+          <a href="#sobre-mi" class="hover:text-brand-400 transition-colors">Sobre Mí</a>
+          <a href="#habilidades" class="hover:text-brand-400 transition-colors">Habilidades</a>
+          <a href="#proyectos" class="hover:text-brand-400 transition-colors">Proyectos</a>
+          <a href="#educacion" class="hover:text-brand-400 transition-colors">Educación</a>
+          <a href="#contacto" class="hover:text-brand-400 transition-colors">Contacto</a>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="flex items-center gap-3">
+          <!-- Live Edit Trigger -->
+          <button onclick="toggleEditModal()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center gap-2 border border-slate-700 transition-colors" title="Personalizar información">
+            <i class="fa-solid fa-pen-to-square text-brand-400"></i>
+            <span class="hidden sm:inline">Editar Datos</span>
+          </button>
+          
+          <!-- Download / Print PDF -->
+          <button onclick="window.print()" class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white text-xs font-semibold shadow-md shadow-brand-600/30 flex items-center gap-2 transition-all hover:scale-105">
+            <i class="fa-solid fa-file-arrow-down"></i>
+            <span>Descargar CV</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button onclick="toggleMobileMenu()" class="md:hidden text-slate-400 hover:text-white p-2" aria-label="Abrir Menú">
+            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-3">
+      <a href="#sobre-mi" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-400 py-1">Sobre Mí</a>
+      <a href="#habilidades" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-400 py-1">Habilidades</a>
+      <a href="#proyectos" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-400 py-1">Proyectos</a>
+      <a href="#educacion" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-400 py-1">Educación</a>
+      <a href="#contacto" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-400 py-1">Contacto</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 glow-bg overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-10">
+        
+        <!-- Hero Text -->
+        <div class="flex-1 text-center md:text-left space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+            <span id="display-subtitle">Estudiante de Ingeniería de Sistemas / Desarrollador</span>
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white">
+            Hola, soy <br class="hidden sm:inline">
+            <span class="bg-gradient-to-r from-brand-400 via-sky-400 to-emerald-400 bg-clip-text text-transparent" id="display-name">
+              Juan Miguel
+            </span>
+          </h1>
+          
+          <p class="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed" id="display-headline">
+            Apasionado por la creación de soluciones tecnológicas integrales, desarrollo de software escalable, gestión de bases de datos y desarrollo web moderno.
+          </p>
+
+          <!-- Contact Quick Info Badges -->
+          <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs sm:text-sm text-slate-300 pt-2">
+            <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+              <i class="fa-solid fa-location-dot text-brand-400"></i>
+              <span id="display-location">Lima, Perú</span>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+              <i class="fa-solid fa-envelope text-brand-400"></i>
+              <span id="display-email">contacto@ejemplo.com</span>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+              <i class="fa-solid fa-phone text-brand-400"></i>
+              <span id="display-phone">+51 987 654 321</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4 no-print">
+            <a href="#contacto" class="px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-sm shadow-lg shadow-brand-500/25 transition-all hover:-translate-y-0.5 flex items-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Contactar Conmigo</span>
+            </a>
+            <a href="https://github.com" target="_blank" id="display-github" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+              <i class="fa-brands fa-github text-lg"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" id="display-linkedin" class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm transition-all hover:-translate-y-0.5 flex items-center gap-2">
+              <i class="fa-brands fa-linkedin text-lg text-sky-400"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Avatar / Code Card Graphic -->
+        <div class="relative group">
+          <div class="absolute -inset-1 bg-gradient-to-r from-brand-500 to-sky-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div>
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden flex flex-col p-4 shadow-2xl print-card">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+              <div class="flex space-x-1.5">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <span class="text-[10px] font-mono text-slate-500">developer.profile.js</span>
+            </div>
+            <div class="font-mono text-xs text-slate-300 leading-relaxed space-y-1 overflow-hidden">
+              <p><span class="text-purple-400">const</span> <span class="text-sky-300">perfil</span> = {</p>
+              <p class="pl-4"><span class="text-slate-400">nombre:</span> <span class="text-emerald-400">'Juan Miguel'</span>,</p>
+              <p class="pl-4"><span class="text-slate-400">rol:</span> <span class="text-emerald-400">'Full-Stack Student'</span>,</p>
+              <p class="pl-4"><span class="text-slate-400">stack:</span> [<span class="text-amber-300">'C#'</span>, <span class="text-amber-300">'Java'</span>, <span class="text-amber-300">'Angular'</span>],</p>
+              <p class="pl-4"><span class="text-slate-400">baseDatos:</span> [<span class="text-amber-300">'SQL Server'</span>, <span class="text-amber-300">'Oracle'</span>],</p>
+              <p class="pl-4"><span class="text-slate-400">cloud:</span> <span class="text-emerald-400">'Microsoft Azure'</span>,</p>
+              <p class="pl-4"><span class="text-slate-400">estado:</span> <span class="text-brand-400">'Listo para trabajar'</span></p>
+              <p>};</p>
+            </div>
+            <div class="mt-auto pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+              <span class="flex items-center gap-1"><i class="fa-solid fa-code text-brand-400"></i> Clean Code</span>
+              <span class="text-brand-400 font-semibold">100% comprometido</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section id="sobre-mi" class="py-16 border-t border-slate-800/60 bg-slate-900/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start gap-8">
+        <div class="md:w-1/3">
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Perfil Profesional</h2>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Sobre Mí</h3>
+          <div class="w-12 h-1 bg-brand-500 rounded-full mt-3"></div>
+        </div>
+        <div class="md:w-2/3 space-y-4 text-slate-300 text-base leading-relaxed print-card p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
+          <p id="display-about">
+            Estudiante avanzado de Ingeniería de Sistemas orientado al desarrollo de software y aplicaciones web. Cuento con una sólida formación en lógica de programación, arquitectura orientada a objetos (POO), diseño y gestión de bases de datos relacionales, e integración de servicios en la nube.
+          </p>
+          <p>
+            Mi objetivo es aplicar mis conocimientos técnicos en proyectos del mundo real, colaborando en equipos multidisciplinarios para construir soluciones digitales eficientes, optimizadas y centradas en la experiencia del usuario.
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-800">
+            <div>
+              <span class="block text-2xl font-bold text-white">10+</span>
+              <span class="text-xs text-slate-400">Proyectos Realizados</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold text-brand-400">100%</span>
+              <span class="text-xs text-slate-400">Responsabilidad</span>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold text-sky-400">Azure</span>
+              <span class="text-xs text-slate-400">Cloud Fundamentals</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="habilidades" class="py-16 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Competencias</h2>
+        <h3 class="text-3xl font-extrabold text-white">Habilidades Técnicas</h3>
+        <p class="text-slate-400 mt-2 text-sm">Tecnologías y herramientas con las que trabajo cotidianamente.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        
+        <!-- Programming Languages -->
+        <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl hover:border-brand-500/50 transition-colors print-card">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-4">
+            <i class="fa-solid fa-code text-xl"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-3">Lenguajes de Programación</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-java text-amber-500"></i> Java</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-hashtag text-purple-400"></i> C#</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-python text-sky-400"></i> Python</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-c text-blue-400"></i> C</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-js text-yellow-400"></i> JavaScript</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-html5 text-orange-500"></i> HTML5 & CSS3</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-database text-emerald-400"></i> SQL</span>
+          </div>
+        </div>
+
+        <!-- Frameworks & Tools -->
+        <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl hover:border-brand-500/50 transition-colors print-card">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
+            <i class="fa-solid fa-layer-group text-xl"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-3">Frameworks & Herramientas</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-angular text-red-500"></i> Angular</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-android text-emerald-400"></i> Android Studio</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-robot text-teal-400"></i> Dialogflow</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-cube text-amber-500"></i> NetBeans</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-code font-bold text-blue-500"></i> Visual Studio / VS Code</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-git-alt text-orange-600"></i> Git & GitHub</span>
+          </div>
+        </div>
+
+        <!-- Databases & Cloud -->
+        <div class="bg-slate-900/60 border border-slate-800 p-6 rounded-2xl hover:border-brand-500/50 transition-colors print-card">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+            <i class="fa-solid fa-server text-xl"></i>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-3">Bases de Datos y Nube</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-database text-red-400"></i> SQL Server</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-database text-red-500"></i> Oracle SQL</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-microsoft text-sky-400"></i> Microsoft Azure</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-cloud text-brand-400"></i> IaaS / PaaS Services</span>
+            <span class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium rounded-lg border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-diagram-project text-purple-400"></i> Stored Procedures & Triggers</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="proyectos" class="py-16 border-t border-slate-800/60 bg-slate-900/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Portafolio</h2>
+          <h3 class="text-3xl font-extrabold text-white">Proyectos Destacados</h3>
+        </div>
+        <!-- Project Filter Buttons -->
+        <div class="flex flex-wrap gap-2 mt-4 sm:mt-0 no-print" id="project-filters">
+          <button onclick="filterProjects('all')" class="filter-btn active px-3 py-1 rounded-lg text-xs font-semibold bg-brand-500 text-slate-950 transition-colors">Todos</button>
+          <button onclick="filterProjects('web')" class="filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">Web & Frontend</button>
+          <button onclick="filterProjects('mobile')" class="filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">Mobile & AI</button>
+          <button onclick="filterProjects('backend')" class="filter-btn px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition-colors">Backend & DB</button>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        
+        <!-- Project 1 -->
+        <div class="project-card web bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col print-card">
+          <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-950 p-4 flex items-center justify-center relative overflow-hidden border-b border-slate-800">
+            <i class="fa-solid fa-ticket text-6xl text-brand-500/30 group-hover:scale-110 transition-transform"></i>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-500/20 text-brand-400 border border-brand-500/30">Angular SPA</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <h4 class="text-lg font-bold text-white mb-2">Sistema Web para Cines</h4>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Aplicación web SPA para reservas de entradas de cine, cartelera dinámica, selección de asientos y módulo de compras desarrollado con componentes reutilizables en Angular.
+            </p>
+            <div class="mt-auto pt-3 flex flex-wrap gap-1.5 border-t border-slate-800/80 mb-4">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Angular</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">TypeScript</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card mobile bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col print-card">
+          <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-950 p-4 flex items-center justify-center relative overflow-hidden border-b border-slate-800">
+            <i class="fa-solid fa-mobile-screen-button text-6xl text-sky-500/30"></i>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/20 text-sky-400 border border-sky-500/30">Android & Chatbot</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <h4 class="text-lg font-bold text-white mb-2">SportApp & Chatbot Asistente</h4>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Aplicación móvil orientada a reserva de canchas deportivas. Integra un bot conversacional inteligente entrenado en Dialogflow para la atención de preguntas frecuentes.
+            </p>
+            <div class="mt-auto pt-3 flex flex-wrap gap-1.5 border-t border-slate-800/80 mb-4">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Android Studio</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Java</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Dialogflow API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card backend bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col print-card">
+          <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-950 p-4 flex items-center justify-center relative overflow-hidden border-b border-slate-800">
+            <i class="fa-solid fa-database text-6xl text-emerald-500/30"></i>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Java & Web DAO</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <h4 class="text-lg font-bold text-white mb-2">Sistema de Gestión Empresarial Java</h4>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Plataforma web de administración CRUD implementando patrón de diseño DAO (Data Access Object), Servlets, JSP y conexión jdbc robusta a base de datos.
+            </p>
+            <div class="mt-auto pt-3 flex flex-wrap gap-1.5 border-t border-slate-800/80 mb-4">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Java Web</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Pattern DAO</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">SQL Server</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card backend bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col print-card">
+          <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-950 p-4 flex items-center justify-center relative overflow-hidden border-b border-slate-800">
+            <i class="fa-solid fa-server text-6xl text-purple-500/30"></i>
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">Database SQL</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col">
+            <h4 class="text-lg font-bold text-white mb-2">Optimización de BD & Stored Procedures</h4>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Diseño de modelo relacional complejo, optimización de consultas SQL, creación de Triggers de auditoría y Procedimientos Almacenados transaccionales.
+            </p>
+            <div class="mt-auto pt-3 flex flex-wrap gap-1.5 border-t border-slate-800/80 mb-4">
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">SQL Server</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">T-SQL</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300">Oracle PL/SQL</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications Timeline Section -->
+  <section id="educacion" class="py-16 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12">
+        
+        <!-- Academic Background -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-400">
+              <i class="fa-solid fa-graduation-cap text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-extrabold text-white">Educación Académica</h3>
+              <p class="text-xs text-slate-400">Formación universitaria y técnica</p>
+            </div>
+          </div>
+
+          <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-800">
+            
+            <div class="relative pl-9 print-card">
+              <span class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-brand-500 border-4 border-slate-950"></span>
+              <span class="text-xs font-semibold text-brand-400">2022 - Presente</span>
+              <h4 class="text-base font-bold text-white mt-0.5">Ingeniería de Sistemas / Computación</h4>
+              <p class="text-sm text-slate-400 font-medium">Instituto Superior / Universidad</p>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                Enfocado en desarrollo de software, arquitectura de sistemas, diseño de bases de datos relacionales e ingeniería de requerimientos.
+              </p>
+            </div>
+
+            <div class="relative pl-9 print-card">
+              <span class="absolute left-1.5 top-1.5 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-950"></span>
+              <span class="text-xs font-semibold text-slate-400">Educación Secundaria</span>
+              <h4 class="text-base font-bold text-white mt-0.5">Conclusión de Estudios Secundarios</h4>
+              <p class="text-xs text-slate-400 mt-1">Excelencia académica en ciencias y matemáticas.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Certifications & Workshops -->
+        <div>
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
+              <i class="fa-solid fa-certificate text-lg"></i>
+            </div>
+            <div>
+              <h3 class="text-2xl font-extrabold text-white">Certificaciones y Cursos</h3>
+              <p class="text-xs text-slate-400">Capacitación continua comprobada</p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-sky-500/40 transition-colors flex items-start gap-4 print-card">
+              <div class="p-2.5 rounded-lg bg-sky-500/10 text-sky-400">
+                <i class="fa-solid fa-award text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Cisco Networking Academy</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Fundamentos de Redes y Ciberseguridad / Python Essentials</p>
+                <span class="inline-block mt-2 text-[10px] font-semibold text-sky-400 px-2 py-0.5 rounded bg-sky-500/10 border border-sky-500/20">Aprobado</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-brand-500/40 transition-colors flex items-start gap-4 print-card">
+              <div class="p-2.5 rounded-lg bg-brand-500/10 text-brand-400">
+                <i class="fa-solid fa-cloud text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">Microsoft Azure Fundamentals</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Servicios Cloud, Máquinas Virtuales (IaaS) y Redes Virtuales</p>
+                <span class="inline-block mt-2 text-[10px] font-semibold text-brand-400 px-2 py-0.5 rounded bg-brand-500/10 border border-brand-500/20">Capacitación Azure</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-emerald-500/40 transition-colors flex items-start gap-4 print-card">
+              <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                <i class="fa-solid fa-code text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-white">C Entry-Level Programmer / Java Programming</h4>
+                <p class="text-xs text-slate-400 mt-0.5">Estructuras de datos, algoritmia y programación orientada a objetos (POO).</p>
+                <span class="inline-block mt-2 text-[10px] font-semibold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">Certificado</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto" class="py-16 border-t border-slate-800/60 bg-slate-900/30 no-print">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Ponte en Contacto</h2>
+      <h3 class="text-3xl font-extrabold text-white mb-4">¿Tienes un proyecto o vacante profesional?</h3>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto mb-8">
+        Estoy disponible para prácticas, proyectos freelancing o incorporarme a tu equipo de desarrollo full-time.
+      </p>
+
+      <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800 max-w-lg mx-auto w-full">
+        <a href="mailto:contacto@ejemplo.com" id="contact-email-btn" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 transition-transform hover:scale-105">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Enviar Correo Directo</span>
+        </a>
+        <button onclick="copyToClipboard()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm flex items-center justify-center gap-2 border border-slate-700 transition-colors">
+          <i class="fa-solid fa-copy text-brand-400"></i>
+          <span id="copy-text">Copiar Email</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 border-t border-slate-800/80 bg-slate-950 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 <span id="footer-name">Juan Miguel</span>. Todos los derechos reservados.</p>
+      <p class="flex items-center gap-1">Diseñado con <i class="fa-solid fa-heart text-rose-500"></i> & Tailwind CSS</p>
+    </div>
+  </footer>
+
+  <!-- MODAL FOR LIVE EDITING PORTFOLIO DATA -->
+  <div id="edit-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto no-print">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative my-8">
+      <button onclick="toggleEditModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center font-bold">
+          <i class="fa-solid fa-user-gear"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">Personalizar Tu Curriculum</h3>
+          <p class="text-xs text-slate-400">Modifica tus datos en tiempo real para generar tu PDF personalizado.</p>
+        </div>
+      </div>
+
+      <form id="edit-form" onsubmit="saveCustomData(event)" class="space-y-4 text-left">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Nombre Completo</label>
+            <input type="text" id="input-name" value="Juan Miguel" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Subtítulo / Rol</label>
+            <input type="text" id="input-subtitle" value="Estudiante de Ingeniería de Sistemas / Desarrollador" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Ubicación</label>
+            <input type="text" id="input-location" value="Lima, Perú" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Correo Electrónico</label>
+            <input type="email" id="input-email" value="jmiguel.contacto@ejemplo.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Teléfono</label>
+            <input type="text" id="input-phone" value="+51 987 654 321" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Resumen Sobre Mí</label>
+          <textarea id="input-about" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">Estudiante avanzado de Ingeniería de Sistemas orientado al desarrollo de software y aplicaciones web. Cuento con una sólida formación en lógica de programación, arquitectura orientada a objetos (POO), diseño y gestión de bases de datos relacionales, e integración de servicios en la nube.</textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">URL GitHub</label>
+            <input type="text" id="input-github" value="https://github.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">URL LinkedIn</label>
+            <input type="text" id="input-linkedin" value="https://linkedin.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500">
+          </div>
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3 border-t border-slate-800">
+          <button type="button" onclick="toggleEditModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700">Cancelar</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-slate-950 text-xs font-bold shadow-md shadow-brand-500/20">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Dynamic Functionality -->
+  <script>
+    // Toggle Mobile Navigation
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Toggle Modal
+    function toggleEditModal() {
+      const modal = document.getElementById('edit-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    // Save Customized Information
+    function saveCustomData(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('input-name').value;
+      const subtitle = document.getElementById('input-subtitle').value;
+      const location = document.getElementById('input-location').value;
+      const email = document.getElementById('input-email').value;
+      const phone = document.getElementById('input-phone').value;
+      const about = document.getElementById('input-about').value;
+      const github = document.getElementById('input-github').value;
+      const linkedin = document.getElementById('input-linkedin').value;
+
+      // Update UI elements
+      document.getElementById('display-name').textContent = name;
+      document.getElementById('nav-name-title').textContent = name;
+      document.getElementById('footer-name').textContent = name;
+      
+      // Update Initials
+      const nameParts = name.trim().split(' ');
+      let initials = nameParts[0] ? nameParts[0][0] : 'J';
+      if (nameParts.length > 1) initials += nameParts[1][0];
+      document.getElementById('nav-initials').textContent = initials.toUpperCase();
+
+      document.getElementById('display-subtitle').textContent = subtitle;
+      document.getElementById('display-location').textContent = location;
+      document.getElementById('display-email').textContent = email;
+      document.getElementById('display-phone').textContent = phone;
+      document.getElementById('display-about').textContent = about;
+
+      document.getElementById('display-github').href = github;
+      document.getElementById('display-linkedin').href = linkedin;
+      document.getElementById('contact-email-btn').href = `mailto:${email}`;
+
+      toggleEditModal();
+    }
+
+    // Filter Projects Script
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Update button styles
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-brand-500', 'text-slate-950');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-brand-500', 'text-slate-950');
+
+      // Show/Hide cards
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Copy Email to Clipboard helper
+    function copyToClipboard() {
+      const emailText = document.getElementById('display-email').textContent;
+      
+      // Using fallback execCommand for iframe safety
+      const dummyInput = document.createElement('input');
+      document.body.appendChild(dummyInput);
+      dummyInput.value = emailText;
+      dummyInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummyInput);
+
+      const copyBtnText = document.getElementById('copy-text');
+      const originalText = copyBtnText.textContent;
+      copyBtnText.textContent = '¡Copiado con Éxito!';
+      setTimeout(() => {
+        copyBtnText.textContent = originalText;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
